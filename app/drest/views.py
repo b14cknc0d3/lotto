@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from rest_framework.response import Response
 from dynamic_rest.viewsets import DynamicModelViewSet
 from .serailizer import LnoSerializer
@@ -21,13 +20,13 @@ class LnoViewSet(DynamicModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = LnoSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(reseller=request.user)
+            serializer.save(rname=request.user)
         return Response(serializer.data)
 
 
 # class UserViewSet(DynamicModelViewSet):
-#     model = User
-#     queryset = User.objects.all().order_by('-date_joined')
+#     model = user
+#     queryset = user.objects.all().order_by('-date_joined')
 #     serializer_class = UserSerializer
 
 
@@ -43,12 +42,19 @@ class LnoFilterViewSet(DynamicModelViewSet):
     )
 
     def list(self, request, *args, **kwargs):
-        queryset = Lno.objects.filter(reseller=request.user)
+        queryset = Lno.objects.filter(rname=request.user)
         serializer = LnoSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
         serializer = LnoSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(reseller=request.user)
+            serializer.save(rname=request.user)
         return Response(serializer.data)
+
+#
+# class userViewSet(DynamicModelViewSet):
+#     model = user
+#     queryset = user.objects.all()
+#     serializer_class = userSerializer
+#     permission_classes = (userOwnerOrReadOnly, IsAuthenticated)

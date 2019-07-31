@@ -5,18 +5,16 @@ from .models import Lno
 
 
 class LnoSerializer(serializers.DynamicModelSerializer):
-    reseller = DynamicField(source='reseller.username', read_only=True)
+    rname = DynamicField(source='rname.username', read_only=True)
 
     class Meta:
         model = Lno
         name = 'lottery'
-        fields = ('id', 'lno', 'cname', 'reseller', 'contact', 'address')
+        fields = ('id', 'lno', 'cname', 'rname', 'contact', 'address')
 
-# # class UserSerializer(serializers.DynamicModelSerializer):
-# #     # lotteries = DynamicRelationField('LnoSerializer', source='lno_set', many=True, deferred=True)
-# #     # lot_count = CountField('lotteries', required=False, deferred=True)
-# #     lotteries = DynamicRelationField(source='Lno')
-# 
+# class ResellerSerializer(serializers.DynamicModelSerializer):
+#     saledatas = serializers.RelatedField(queryset=Lno.objects.all(), many=True, default=True)
+#
 #     class Meta:
-#         model = User
-#         fields = ('id', 'username', 'lotteries')
+#         model = Reseller
+#         fields = ('reseller_name', 'ph', 'address', 'saledatas')
