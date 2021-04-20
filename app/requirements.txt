@@ -51,7 +51,7 @@ pluggy==0.12.0
 protobuf==3.0.0
 psutil==5.4.2
 psycopg2==2.8.3
-py==1.5.4
+py==1.10.0
 pyasn1==0.4.2
 pycairo==1.16.2
 pycodestyle==2.5.0
