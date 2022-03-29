@@ -43,7 +43,7 @@ netifaces==0.10.4
 oauth==1.0.1
 olefile==0.45.1
 packaging==19.0
-paramiko==2.0.0
+paramiko==2.10.1
 passlib==1.7.1
 pexpect==4.2.1
 
